@@ -13,13 +13,23 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity{
 
 
+    Button button1;
+    TextView text1;
+
+    EditText userName, password;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button1 = findViewById(R.id.main_button);
-        TextView text1 = findViewById(R.id.create_account);
+        button1 = findViewById(R.id.main_button);
+        text1 = findViewById(R.id.create_account);
+
+        userName = findViewById(R.id.main_edit);
+        password = findViewById(R.id.main_edit_password);
+
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
