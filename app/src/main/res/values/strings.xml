@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Movie Master</string>
+    <string name="welcome">Welcome</string>
+    <string name="log_in">Log in</string>
+    <string name="create">create account</string>
+    <string name="sign">Sign Up</string>
+    <string name="type_name">type your name</string>
+    <string name="type_password">type your password</string>
+    <string name="register">register</string>
+
+</resources>
