@@ -10,13 +10,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moviemaster.SQLite.DataBaseHelper;
+import com.example.moviemaster.Test.TestActivity;
+
 public class MainActivity extends AppCompatActivity{
 
 
-    Button button1;
-    TextView text1;
+    Button logInBtn;
+    TextView createAccount;
 
     EditText userName, password;
+
+    DataBaseHelper dbh;
 
 
     @Override
@@ -24,28 +29,40 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button1 = findViewById(R.id.main_button);
-        text1 = findViewById(R.id.create_account);
+
+        logInBtn = findViewById(R.id.main_button);
+        createAccount = findViewById(R.id.create_account);
 
         userName = findViewById(R.id.main_edit);
         password = findViewById(R.id.main_edit_password);
 
+        dbh = new DataBaseHelper(this);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+
+        logInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText edit = findViewById(R.id.main_edit);
 
-                Intent intent = new Intent(MainActivity.this, MainScreen.class);
-                startActivity(intent);
+                String client = userName.getText().toString();
+                String passwd = password.getText().toString();
+                if (client.equals("") || passwd.equals(""))
+                    Toast.makeText(MainActivity.this, "You have empty fields", Toast.LENGTH_SHORT).show();
+                else {
+                    Boolean checkAccount = dbh.checkUserNamePassword(client,passwd);
+                    if (checkAccount){
+                        Toast.makeText(MainActivity.this,"Welcome, "+userName.getText(),Toast.LENGTH_SHORT).show();
 
-                Toast t = Toast.makeText(MainActivity.this,"hello, "+edit.getText(),Toast.LENGTH_SHORT);
-                t.show();
+                        Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                        startActivity(intent);
+
+                    } else Toast.makeText(MainActivity.this, "Invalid account", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
 
-        text1.setOnClickListener(new View.OnClickListener() {
+        createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SignUpActivity.class);

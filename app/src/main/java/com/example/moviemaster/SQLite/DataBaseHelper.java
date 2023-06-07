@@ -1,5 +1,6 @@
 package com.example.moviemaster.SQLite;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,46 +15,46 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     static final int DATABASE_VERSION = 1;
 
     public DataBaseHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, "clients.db", null, 1);
     }
 
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        db.execSQL("create Table users(email TEXT primary key, password TEXT)");
+        sqLiteDatabase.execSQL("create Table users(username TEXT primary key, password TEXT)");
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
 
-        db.execSQL("drop Table if exists users");
+        sqLiteDatabase.execSQL("drop Table if exists users");
 
     }
 
     public Boolean insertData(String userName, String password){
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", userName);
         contentValues.put("password", password);
-        long result = db.insert("users", null, contentValues);
+        long result = sqLiteDatabase.insert("users", null, contentValues);
 
         return result != -1;
     }
 
 
     public Boolean checkUserName(String userName){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from users where username = ?", new String[]{userName});
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("Select * from users where username = ?", new String[]{userName});
 
         return cursor.getCount() > 0;
     }
 
 
     public Boolean checkUserNamePassword(String userName, String password){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from users where username = ? and password = ?", new String[]{userName, password});
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("Select * from users where username = ? and password = ?", new String[]{userName, password});
 
         return cursor.getCount() > 0;
     }
