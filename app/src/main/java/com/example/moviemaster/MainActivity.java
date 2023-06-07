@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moviemaster.SQLite.DataBaseHelper;
-import com.example.moviemaster.Test.TestActivity;
+
 
 public class MainActivity extends AppCompatActivity{
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity{
                     if (checkAccount){
                         Toast.makeText(MainActivity.this,"Welcome, "+userName.getText(),Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                         startActivity(intent);
 
                     } else Toast.makeText(MainActivity.this, "Invalid account", Toast.LENGTH_SHORT).show();
