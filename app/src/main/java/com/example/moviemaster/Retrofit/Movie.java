@@ -19,6 +19,29 @@ public class Movie {
     @SerializedName("posterUrl")
     public String posterUrl;
 
+    @SerializedName("filmLength")
+    public String filmLength;
+
+    @SerializedName("rating")
+    public String rating;
+
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getFilmLength() {
+        return filmLength;
+    }
+
+    public void setFilmLength(String filmLength) {
+        this.filmLength = filmLength;
+    }
+
     public int getFilmId() {
         return filmId;
     }
