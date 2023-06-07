@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moviemaster.SQLite.DataBaseHelper;
@@ -17,6 +18,7 @@ public class SignUpActivity extends AppCompatActivity {
     DataBaseHelper dbh;
 
     EditText userName, password;
+    TextView logIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.register_button);
         userName = findViewById(R.id.edit_name);
         password = findViewById(R.id.edit_password);
+        logIn = findViewById(R.id.return_to_log_in);
 
         dbh = new DataBaseHelper(this);
 
@@ -55,5 +58,15 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+
+
+        logIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
