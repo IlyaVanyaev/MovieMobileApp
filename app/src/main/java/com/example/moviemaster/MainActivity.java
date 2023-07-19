@@ -1,5 +1,9 @@
 package com.example.moviemaster;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity{
 
                 String client = userName.getText().toString();
                 String passwd = password.getText().toString();
+
                 if (client.equals("") || passwd.equals(""))
                     Toast.makeText(MainActivity.this, "You have empty fields", Toast.LENGTH_SHORT).show();
                 else {
@@ -69,7 +74,6 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-
 
     }
 

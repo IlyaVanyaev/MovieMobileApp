@@ -48,8 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (insert){
                             Toast.makeText(SignUpActivity.this, "Registration completed", Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
+                            finish();
 
                         } else Toast.makeText(SignUpActivity.this, "Registration failed...", Toast.LENGTH_SHORT).show();
                     }
@@ -63,8 +62,8 @@ public class SignUpActivity extends AppCompatActivity {
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+
+                finish();
             }
         });
 
